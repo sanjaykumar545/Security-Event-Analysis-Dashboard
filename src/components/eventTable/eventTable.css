@@ -1,0 +1,258 @@
+/* Uses the tokens defined in dashboard.css (:root) */
+
+/* ---------- Card ---------- */
+.event-table-card {
+    margin-top: 28px;
+    padding: 22px;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    margin-bottom: 10px;
+}
+
+.event-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.event-table-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+.event-table-header p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ---------- Scroll area ---------- */
+.event-table-wrapper {
+    max-height: 520px;
+    overflow: auto;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.event-table-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
+.event-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.25);
+    border-radius: 999px;
+}
+
+/* ---------- Table ---------- */
+.event-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+.event-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.event-table tbody td {
+    padding: 14px 16px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(86, 96, 126, 0.10);
+}
+
+.event-table tbody tr:last-child td { border-bottom: none; }
+
+.event-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.event-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.event-table tbody td:first-child {
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.event-table tbody td:last-child {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+
+.severity-badge {
+    display: inline-block;
+    min-width: 72px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.severity-badge.critical { background: var(--grad-critical); }
+.severity-badge.high     { background: var(--grad-high); }
+.severity-badge.medium   { background: var(--grad-medium); }
+.severity-badge.low      { background: var(--grad-low); }
+
+/* ---------- Status badges (soft tint + dot) ---------- */
+.status-badge {
+    --tone: #7c6cf0;
+    --tint: rgba(124, 108, 240, 0.12);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--tint);
+    border: 1px solid var(--tint);
+}
+
+.status-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+}
+
+.status-badge.open {
+  --tone: #E5516A;
+  --tint: rgba(229, 81, 106, 0.12);
+}
+
+.status-badge.investigating {
+  --tone: #7C6CF0;
+  --tint: rgba(124, 108, 240, 0.12);
+}
+
+.status-badge.progress {
+  --tone: #D99A0B;
+  --tint: rgba(217, 154, 11, 0.12);
+}
+
+.status-badge.resolved {
+  --tone: #14B88A;
+  --tint: rgba(20, 184, 138, 0.12);
+}
+
+.status-badge.closed {
+  --tone: #38BDF8;
+  --tint: rgba(56, 189, 248, 0.12);
+}
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+ 
+.pagination button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.60);
+    color: var(--text-primary);
+    font: 600 13px 'Figtree', system-ui, sans-serif;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+.pagination button:hover:not(:disabled):not(.active) {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(70, 80, 160, 0.15);
+}
+ 
+.pagination button:focus-visible,
+.pagination select:focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 2px;
+}
+ 
+/* current page */
+.pagination button.active {
+    color: #fff;
+    border-color: transparent;
+    background: var(--grad-brand);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+    cursor: default;
+}
+ 
+/* prev / next arrows */
+.pagination .pagination-arrow {
+    font-size: 15px;
+    color: #6366f1;
+}
+ 
+.pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    color: var(--text-secondary);
+}
+ 
+/* "..." gaps and "1 of 8" text */
+.pagination > span {
+    padding: 0 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+ 
+.pagination .page-info {
+    margin-left: 8px;
+    font-weight: 500;
+}
+ 
+/* rows-per-page dropdown */
+.pagination select {
+    height: 36px;
+    padding: 0 34px 0 12px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background-color: rgba(255, 255, 255, 0.60);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2356607E' stroke-width='2'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    color: var(--text-primary);
+    font: 600 13px 'Figtree', system-ui, sans-serif;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+ 
+.pagination select:hover { background-color: rgba(255, 255, 255, 0.95); }
