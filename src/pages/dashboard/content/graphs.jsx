@@ -27,10 +27,7 @@ ChartJS.register(
 const LineGraph = ({ events }) => {
   const [timeRange, setTimeRange] = useState("7d");
 
-  /*
-   * Use the latest event as the reference point.
-   * This makes the graph work correctly with your sample JSON data.
-   */
+
   const referenceTime = useMemo(() => {
     if (!events || events.length === 0) {
       return new Date();
@@ -126,9 +123,7 @@ const LineGraph = ({ events }) => {
       }
     }
 
-    /*
-     * Put every event into its appropriate bucket.
-     */
+
     filteredEvents.forEach((event) => {
       const eventDate = new Date(event.timestamp);
 
@@ -264,6 +259,82 @@ const LineGraph = ({ events }) => {
     },
   };
 
+  const graphCss = `
+.line-graph-container {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+ 
+.line-graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+ 
+.line-graph-header h3 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+ 
+.line-graph-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+ 
+/* segmented time filter */
+.time-filter {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.50);
+  border: 1px solid var(--glass-border);
+  overflow: scroll;
+}
+ 
+.time-filter button {
+  height: 34px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: 600 13px 'Figtree', system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+.time-filter button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.90);
+  color: var(--text-primary);
+}
+ 
+.time-filter button.active {
+  color: #fff;
+  background: var(--grad-brand);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+  cursor: default;
+}
+ 
+.time-filter button:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 2px;
+}`;
+
 const graphStyle = {
   height: "18rem",
   width: "90%",
@@ -274,7 +345,7 @@ const graphStyle = {
 
   return (
     <div className="line-graph-container">
-
+        <style>{graphCss}</style>
       <div className="line-graph-header">
 
         <div>
